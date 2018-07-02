@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        /* #map {
+          position:absolute;
+          top:0;
+          bottom:0;
+          width:100%;
+        } */
+          .mapboxgl-popup {
+          max-width: 400px;
+          font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+        }
+
+        #controls {
+          position:absolute;
+          top:10px;
+          left:10px;
+          height: 5px;
+          width:150px;
+          z-index:1000;
+          padding:20px;
+        }
+
+
+        #togbut {
+             background: #ffffff ;
+             position: absolute;
+             z-index: 1;
+             top: 10px;
+             left: 10px;
+             border-radius: 3px;
+             width: 120px;
+             border: 1px solid rgba(0,0,0,0.4);
+             font-family: 'Open Sans', sans-serif;
+         }
+         #togbut a {
+             font-size: 13px;
+             color: #404040;
+             display: block;
+             margin: 0;
+             padding: 0;
+             padding: 10px;
+             text-decoration: none;
+             border-bottom: 1px solid rgba(0,0,0,0.25);
+             text-align: center;
+         }
+
+         #togbut a:last-child {
+             border: none;
+         }
+
+         #togbut a:hover {
+             background-color: #449979;
+             color: #ffffff;
+         }
+
+         #togbut a.active {
+             background-color: #42dca3 ;
+             color: #ffffff ;
+         }
+
+         #togbut a.active:hover {
+             background: #ffffff;
+             color: #000000;
+         }
+
+    </style>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Does matter</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="css/grayscale.min.css" rel="stylesheet">
+
+</head>
+
+
+
+<body>
+
+  <!-- Navigation Header -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">Does matter</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fa fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#map">Map</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#proposal">Proposal</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#proposal">Text</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Intro Header -->
+<header class="masthead">
+    <div class="intro-body">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2 class="brand-heading" style="font-size: 60px"> Matter does matter</h2>
+            <p class="intro-text">Waste analysys of Moscow.
+              <br>Done by Altynai Nogoibaeva and Daria Klimova.</p>
+            <a href="#about" class="btn btn-circle js-scroll-trigger">
+              <i class="fa fa-angle-double-down animated"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- About Section -->
+
+
+  <!-- About Section -->
+<section id="about" class="content-section text-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <!-- <h2>Numbers speak</h2> -->
+          <!-- <p> According to available <a href="https://data.mos.ru/">open data</a>, we constructed an interactive project that will all you to see that current management system
+          is not sufficient enough to reduce a huuman impact on mother nature. </p> -->
+
+          <p> Starting from 1954, Moscow's appoach to waste management has not change. Since those time, new technologies of dealing with waste were
+            invented, thus allowing turning waste into valueble resources. In last six decades, Muscovite and the inhabitants of Moscow region
+            rapidly filled vast area of useful land with waste. Currently, estimated over 120 million tons of waste is buried all around Moscow.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map #1 Section -->
+
+<!-- Map #1 Section -->
+<div id='map' style="height: 600px">
+  <div id= 'controls'>
+    <h2>Evolution of landfills</h2>
+    <p></p>
+    <input id="rangeInput" type="range" min="1958" max="2030" step="1">
+  <!-- <div> <input id="checkboxInput" type="checkbox" checked="true" /></input>Landfills</div> -->
+    <div id= 'rangeText'> value </div>
+  </div>
+</div>
+
+<!-- text2 Section -->
+<section id="download" class="download-section content-section text-center" style='background: url("../img/Musor.jpg") no-repeat center center scroll; background-size: cover;'>
+  <div class="container">
+    <div class="col-lg-8 mx-auto">
+      <h2>Moscow realities</h2>
+      <p> Waste recycle is crucial ecomonical part of developed cities around the world.
+        Nowadays, Moscow has great opportunities to recovering resources from 8 million of solid waste that is being generated by its residents.
+         However, to successfully do so, a separate waste collection infrastructure is required. In contemporary waste management
+         infrastructure, separate waste collection becomes a great obstice for sustainable living. </p>
+
+    </div>
+  </div>
+</section>
+
+<!-- Text Section -->
+<section id="text" class="content-section text-center" style='background: url("../img/shema.jpg") no-repeat center center scroll; background-size: cover;'>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <!-- <h2>Numbers speak</h2> -->
+        <!-- <p> According to available <a href="https://data.mos.ru/">open data</a>, we constructed an interactive project that will all you to see that current management system
+        is not sufficient enough to reduce a huuman impact on mother nature. </p> -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Map #2 Section -->
+<div id='map2' style="height: 600px">
+  <nav id="togbut"></nav>
+</div>
+
+<!-- text3 Section -->
+<section id="text3" class="download-section content-section text-center" style='background: url("../img/shema_baki.jpg") no-repeat center center scroll; background-size: cover;'>
+  <div class="container">
+    <div class="col-lg-8 mx-auto">
+
+    </div>
+  </div>
+
+
+</section>
+
+<!-- text2 Section -->
+<section id="download"  class="content-section text-center" style = 'background-color: black'>
+  <div class="container">
+    <div class="col-lg-8 mx-auto">
+      <!-- <h2>Moscow realities</h2> -->
+      <p> Looking at these maps anyone can note the poorly organized Moscow recycle infrastructure. Despite 2017 being declared a year of ecology,
+        no major changes has happened in this industry. In 2017, president Vladimir Putin has signed a policy "Waste and waste management"
+
+
+       </p>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- Map Logic  -->
+
+<script>
+
+mapboxgl.accessToken = 'pk.eyJ1IjoiYWx0eW5haSIsImEiOiJjamR2dXVtb3MwNDlsMzNxbGszMjAzbmloIn0.npShBXLfxX-YKH9AoiCA7A';
+
+//MAPS STYLES
+var map = new mapboxgl.Map({
+    container: 'map', // container id
+    style: 'mapbox://styles/altynai/cjilib6m91fak2rnpjzcef3pg', // stylesheet location
+    center: [37.616, 55.753], // starting position [lng, lat]
+    zoom: 7.5 // starting zoom
+});
+var map2 = new mapboxgl.Map({
+    container: 'map2', // container id
+    style: 'mapbox://styles/altynai/cjixeulxi033q2spdbfmcmjoj', // stylesheet location
+    center: [37.616, 55.753], // starting position [lng, lat]
+    zoom: 9 // starting zoom
+});
+
+
+/////////// FIRST MAP //////////
+document.getElementById("rangeInput").addEventListener("input", function(){
+  ChangeRange(this.value);
+});
+
+ //CHECKBUTTON // document.getElementById("checkboxInput").addEventListener("input", function(){
+ //   toggleStation(this.checked);
+ // });
+
+function toggleStation(value){
+   map.setLayoutProperty("landfills_layer",'visibility', value ? "visible" : "none");
+}
+
+function ChangeRange(value){
+  var begin = ["all", ['>', 'begin', 0], ['<=', 'begin', +value]];
+  map.setFilter('landfills_layer', begin);
+  rangeText.innerHTML = value;
+  console.log(begin);
+};
+
+//
+var xmlhttp = new XMLHttpRequest();
+var url = "landfills_polygons.geojson"; //var url = "landfills_updated.geojson";
+var rangeText = document.getElementById("rangeText");
+console.log(document.getElementById("controls"));
+
+
+function ProcessData(data) {
+  console.log('before',map.getStyle());
+
+  map.addSource('landfills', {
+      type: 'geojson',
+      data: data
+  });
+
+  map.addLayer({
+    "id": "landfills_layer",
+    "source": "landfills",
+    "type": "fill",
+    "filter": ["all", ['>', 'start', 0], ['<=', 'start', 2018]],
+    "paint": {
+      "fill-color": "#fff"
+    }
+  });
+
+  console.log('after', map.getStyle());
+
+  map.on('click', 'landfills_layer', function (e) {
+        new mapboxgl.Popup()
+
+            .setLngLat(e.features[0].geometry.coordinates.slice())
+            .setHTML('<h4>'+e.features[0].properties.Name+'</h4>')
+            .addTo(map);
+    });
+
+    // Change the cursor to a pointer when the mouse is over the states layer.
+    map.on('mouseenter', 'landfills_layer', function () {
+        map.getCanvas().style.cursor = 'pointer';
+    });
+
+    // Change it back to a pointer when it leaves.
+    map.on('mouseleave', 'landfills_layer', function () {
+        map.getCanvas().style.cursor = '';
+    });
+
+  }
+
+//ERRORS TEST
+xmlhttp.onreadystatechange = function() {
+if (this.readyState == 4 && this.status == 200) {
+    var json = JSON.parse(this.responseText);
+      ProcessData(json);
+    }
+};
+
+//EVENT MAP IS FULLY LOADED
+map.on("load", function() {
+  xmlhttp.open("GET", url, true);
+  xmlhttp.send();
+  console.log(map.getStyle());
+  //LOADS IMMEDIATLY
+  map.setLayoutProperty("outline", "visibility", "visible");
+});
+
+  //MAP1 CONTROL
+  map.addControl(new mapboxgl.NavigationControl());
+  map.scrollZoom.disable();
+  map.doubleClickZoom.enable();
+
+
+
+/////////// SECOND MAP //////////
+map2.addControl(new mapboxgl.NavigationControl());
+
+var toggleableLayerIds = [ 'district_statistic', 'recycle_bins', 'isochrone' ];
+
+for (var i = 0; i < toggleableLayerIds.length; i++) {
+    var id = toggleableLayerIds[i];
+
+    var link = document.createElement('a');
+    link.href = '#';
+    link.className = 'active';
+    link.textContent = id;
+
+    link.onclick = function (e) {
+        var clickedLayer = this.textContent;
+        e.preventDefault();
+        e.stopPropagation();
+        console.log(clickedLayer);
+
+        var visibility = map2.getLayoutProperty(clickedLayer, 'visibility');
+
+
+
+        if (visibility === 'visible') {
+            map2.setLayoutProperty(clickedLayer, 'visibility', 'none');
+            this.className = '';
+        } else {
+            this.className = 'active';
+            map2.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+        }
+        if (clickedLayer === 'recycle_bins' && visibility === 'none') {
+          map2.setLayoutProperty('lables', 'visibility', 'visible');
+        } else {
+                    map2.setLayoutProperty('lables', 'visibility', 'none');
+        }
+
+        if (clickedLayer === 'isochrone' && visibility === 'none') {
+          map2.setLayoutProperty('building', 'visibility', 'visible');
+          map2.setLayoutProperty('district_fill', 'visibility', 'visible');
+          map2.setLayoutProperty('lables_district', 'visibility', 'visible');
+          map2.setLayoutProperty('outline', 'visibility', 'visible');
+          map2.setZoom(15);
+        } else {
+                    map2.setLayoutProperty('building', 'visibility', 'none');
+                    map2.setLayoutProperty('district_fill', 'visibility', 'none');
+                    map2.setLayoutProperty('lables_district', 'visibility', 'none');
+                    map2.setLayoutProperty('outline', 'visibility', 'none');
+                    map2.setZoom(8);
+        }
+    };
+
+    var layers = document.getElementById('togbut');
+    layers.appendChild(link);
+    map2.scrollZoom.disable();
+
+
+
+
+
+}
+
+
+
+</script>
+
+</body>
+</html>
