@@ -193,6 +193,25 @@ a:focus, a:hover {
   -o-background-size: cover;
   background-size: cover;
 }
+.text-section {
+  color: white;
+  background: url("../img/shema.jpg") no-repeat center center scroll;
+  background-color: black;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.text3-section {
+  color: white;
+  background: url("../img/shema_baki.jpg") no-repeat center center scroll;
+  background-color: black;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 
 #map {
   width: 100%;
